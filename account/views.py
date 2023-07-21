@@ -39,8 +39,6 @@ def check_validation(password):
     
 class SignupView(View):
     def get(self,request,*args,**kwargs):
-        print(request.POST)
-
         return render(request,"signup.html")
     
     def post(self,request,*args,**kwargs):
@@ -73,10 +71,11 @@ class SignupView(View):
                             gender = gender,
                             avatar = avatar
                         )
-                user = authenticate(request,email=email,password=password)
-                if user is not None:
-                    login(request,user)
-                    return redirect()
+                        return redirect("signup")
+                # user = authenticate(request,email=email,password=password)
+                # if user is not None:
+                #     login(request,user)
+                #     return redirect()
             else:
                     messages.info(request,"Email has been taken")
                     return redirect("signup")

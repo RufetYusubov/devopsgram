@@ -9,8 +9,10 @@
         <div id="header">
 
             <form method="post">
+                {% csrf_token %} 
+                <input type="hidden" name="choice" value="login">
                 <li>Email or Phone<br><input type="text" name="email"></li>
-                <li>Password<br><input type="password" name="password"><br><a href="">Forgotten account?</a></li>
+                <li>Password<br><input type="newpassword1" name="password"><br><a href="">Forgotten account?</a></li>
                 <li><input type="submit" name="login" value="Log In"></li>
             </form>
 
@@ -24,28 +26,28 @@
         </div>
 
         <div id="div2">
-            <form>
-            <h1>Create an account</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <h1>Create an account</h1>
 
-            <p>It's free and always will be.</p>
-            <li><input type="text" placeholder="First Name" id="Firstname"><input type="text" placeholder="Surname" id="surname"></li>
-            <li><input type="text" placeholder="Mobile number or email"></li>
-            <li><input type="password" placeholder="New password"></li>
+                <p>It's free and always will be.</p>
+                <input type="hidden" name="choice" value="signup">
+                <li><input type="text" name="firstname" placeholder="First Name" id="Firstname"><input type="text" name="lastname" placeholder="Surname" id="surname"></li>
+                <li><input type="text" name="email" placeholder="Email"></li>
+                <li><input type="password" name="password" placeholder="New password"></li>
 
-            <p>Birthday</p>
+                <p>Birthday</p>
 
-            <li>
-                <!-- <select><option>Day</option></select>
-                <select><option>Month</option></select>
-                <select><option>Year</option></select> -->
-                <input type="date">
-            </li>
+                <li>
+                    <!-- <select><option>Day</option></select>
+                    <select><option>Month</option></select>
+                    <select><option>Year</option></select> -->
+                    <input type="date" name="birthday">
+                </li>
 
-            <li><input type="radio">Female <input type="radio">Male</li>
-            <li id="terms">By clicking Create an account, you agree to our <a href="">Terms</a> and that <br>you have read our <a href="">Data Policy</a>, including our <a href="">Cookie Use</a>.</li>
-            <li><input type="submit" value="Create an account"></li>
-            <li id="create_page"><a href="">Create a Page</a> for a celebrity, band or business.</li>
-        </form>
+                <li><input type="radio" name="gender">Female <input type="radio" name="gender">Male</li>
+                <button><li><input type="submit"  value="Create an account"></li></button>
+            </form>
         </div>
 
     </div>

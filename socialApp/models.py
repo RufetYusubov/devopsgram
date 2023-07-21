@@ -17,6 +17,7 @@ class PostModel(models.Model):
 class CommentModel(models.Model):
     user = models.ForeignKey(AccountModel,on_delete=models.CASCADE,related_name="user_comments")
     post = models.ForeignKey(PostModel,on_delete=models.CASCADE,related_name="post_comments",blank=True,null=True)
+    parent = models.ForeignKey("self",on_delete=models.CASCADE,blank = True,null=True,related_name="replies")
     
     class Meta:
         verbose_name = "Comment"
