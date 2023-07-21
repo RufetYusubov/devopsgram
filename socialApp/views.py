@@ -115,7 +115,7 @@ def DeleteSavePost(request,id):
     save_post = SaveModel.objects.get(id=id)
     save_post.delete()
     return redirect()
-
+#---------------------------------------------------------------------------
 
 
     

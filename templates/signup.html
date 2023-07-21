@@ -1,71 +1,74 @@
-﻿<html>
-<head>
+﻿{% extends 'base.html' %} 
+  {% block css %}
     {% load static %}
     <link href="{% static 'css/Style.css' %}" rel="stylesheet" />
-    <title>Facebook home page template html</title>
-</head>
-<body>
-    <div id="header_wrapper">
-        <div id="header">
+    <title>{% block title %} Login {% endblock %}</title>
+  {% endblock %}
 
-            <form method="post">
-                {% csrf_token %} 
-                <input type="hidden" name="choice" value="login">
-                <li>Email or Phone<br><input type="text" name="email"></li>
-                <li>Password<br><input type="newpassword1" name="password"><br><a href="">Forgotten account?</a></li>
-                <li><input type="submit" name="login" value="Log In"></li>
-            </form>
+{% block content %} 
+    <body>
+        <div id="header_wrapper">
+            <div id="header">
 
-        </div>
-    </div>
+                <form method="post">
+                    {% csrf_token %} 
+                    <input type="hidden" name="choice" value="login">
+                    <li>Email or Phone<br><input type="text" name="email"></li>
+                    <li>Password<br><input type="newpassword1" name="password"><br><a href="">Forgotten account?</a></li>
+                    <li><input type="submit" name="login" value="Log In"></li>
+                </form>
 
-    <div id="wrapper">
-
-        <div id="div1">
-
+            </div>
         </div>
 
-        <div id="div2">
-            <form method="POST">
-                {% csrf_token %}
-                <h1>Create an account</h1>
+        <div id="wrapper">
 
-                <p>It's free and always will be.</p>
-                <input type="hidden" name="choice" value="signup">
-                <li><input type="text" name="firstname" placeholder="First Name" id="Firstname"><input type="text" name="lastname" placeholder="Surname" id="surname"></li>
-                <li><input type="text" name="email" placeholder="Email"></li>
-                <li><input type="password" name="password" placeholder="New password"></li>
+            <div id="div1">
 
-                <p>Birthday</p>
+            </div>
 
-                <li>
-                    <!-- <select><option>Day</option></select>
-                    <select><option>Month</option></select>
-                    <select><option>Year</option></select> -->
-                    <input type="date" name="birthday">
-                </li>
+            <div id="div2">
+                <form method="POST">
+                    {% csrf_token %}
+                    <h1>Create an account</h1>
 
-                <li><input type="radio" name="gender">Female <input type="radio" name="gender">Male</li>
-                <button><li><input type="submit"  value="Create an account"></li></button>
-            </form>
-        </div>
+                    <p>It's free and always will be.</p>
+                    <input type="hidden" name="choice" value="signup">
+                    <li><input type="text" name="firstname" placeholder="First Name" id="Firstname">
+                        <input type="text" name="lastname" placeholder="Surname" id="surname"></li>
+                    <li><input type="text" name="email" placeholder="Email"></li>
+                    <li><input type="password" name="password" placeholder="New password"></li>
 
-    </div>
+                    <p>Birthday</p>
 
-    <div id="footer_wrapper">
+                    <li>
+                        <!-- <select><option>Day</option></select>
+                        <select><option>Month</option></select>
+                        <select><option>Year</option></select> -->
+                        <input type="date" name="birthday">
+                    </li>
 
-        <div id="footer1">
-            English (UK) <a href="">हिन्दी</a><a href="">ਪੰਜਾਬੀ</a><a href=""> اردو</a><a href="">தமிழ்</a><a href="">বাংলা</a><a href="">मराठी</a><a href="">తెలుగు</a><a href="">ગુજરાતી</a><a href="">ಕನ್ನಡ</a><a href="">മലയാളം</a>
-        </div>
-        <div id="footer2">
-
-            <a href="#">Sign Up</a><a href="#">Log In</a><a href="#">Messenger</a><a href="#">DotNetTec</a><a href="#">Mobile</a><a href="#">Find Friends</a>
-            <a href="#">Badges</a><a href="#">People</a><a href="#">Pages</a><a href="#">Places</a><a href="#">Games</a><a href="#">Locations</a>
-            <a href="">Celebrities</a><a href="">Groups</a><a href="">Moments</a><a href="">About</a>
-            <a href="">Create Advert</a><a href="">Create Page</a><a href="">Developers</a>
-            <a href="">Careers</a><a href="">Privacy</a><a href="">Cookies</a><a href="">Ads</a><a href="">Terms</a><a href="">Help</a>
+                    <li><input type="radio" name="gender">Female <input type="radio" name="gender">Male</li>
+                    <button><li><input type="submit"  value="Create an account"></li></button>
+                </form>
+            </div>
 
         </div>
-    </div>
-</body>
-</html>
+
+        <div id="footer_wrapper">
+
+            <div id="footer1">
+                English (UK) <a href="">हिन्दी</a><a href="">ਪੰਜਾਬੀ</a><a href=""> اردو</a><a href="">தமிழ்</a><a href="">বাংলা</a><a href="">मराठी</a><a href="">తెలుగు</a><a href="">ગુજરાતી</a><a href="">ಕನ್ನಡ</a><a href="">മലയാളം</a>
+            </div>
+            <div id="footer2">
+
+                <a href="#">Sign Up</a><a href="#">Log In</a><a href="#">Messenger</a><a href="#">DotNetTec</a><a href="#">Mobile</a><a href="#">Find Friends</a>
+                <a href="#">Badges</a><a href="#">People</a><a href="#">Pages</a><a href="#">Places</a><a href="#">Games</a><a href="#">Locations</a>
+                <a href="">Celebrities</a><a href="">Groups</a><a href="">Moments</a><a href="">About</a>
+                <a href="">Create Advert</a><a href="">Create Page</a><a href="">Developers</a>
+                <a href="">Careers</a><a href="">Privacy</a><a href="">Cookies</a><a href="">Ads</a><a href="">Terms</a><a href="">Help</a>
+
+            </div>
+        </div>
+    </body>
+{% endblock %}
