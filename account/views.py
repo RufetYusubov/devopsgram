@@ -90,11 +90,11 @@ class SignupView(View):
                       messages.info(request,"Please enter correct email")
                 else:
                      messages.info(request,"Please, enter correct password")
-                return redirect("login")
+                return redirect("signup")
 #----------------------------------------------------------------------------------------------
 def logoutUser(request):
     logout(request)
-    return redirect("login")
+    return redirect("signup")
 #--------------------------------------------------------------------------------------------
 class Changepassword(View):
      def get(self,request,*args,**kwargs):

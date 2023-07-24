@@ -11,7 +11,14 @@ class PostModel(models.Model):
         verbose_name = "Post"
 
     def __str__(self) -> str:
-        return self.user.username
+        return self.user.first_name + " " + self.user.last_name
+    
+    @property
+    def imageURL(self):
+        if self.image:
+            return self.image.url
+        else:
+            return 'images/placeholder.png'
     
     
 class CommentModel(models.Model):
@@ -24,7 +31,7 @@ class CommentModel(models.Model):
         ordering = ("id",)
 
     def __str__(self) -> str:
-        return self.user.username + " " + str(self.id)
+        return self.user.first_name + " "+ self.user.last_name + str(self.id)
         
 
 
@@ -38,7 +45,7 @@ class LikeModel(models.Model):
         verbose_name = "Like"
 
     def __str__(self) -> str:
-        return self.user.username + " " + str(self.id)
+        return self.user.first_name + " "+ self.user.last_name + str(self.id)
     
 
 
@@ -51,7 +58,7 @@ class SaveModel(models.Model):
         verbose_name = "Save"
 
     def __str__(self) -> str:
-        return self.user.username + " " + str(self.id)
+        return self.user.first_name + " "+self.user.last_name + str(self.id)
     
 
 
