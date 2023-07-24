@@ -5,17 +5,14 @@ from django.views.generic import View
 class HomeView(View):
     def get(self,request,*args,**kwargs):
         if request.user.is_authenticated:
+            friends = request.user.friends.all()
             posts = PostModel.objects.filter(
-                user = request.user.friends
-            )
-            post_comments = CommentModel.objects.filter(
-                posts = posts,
-                parent = None
+                user__in = friends
             )
 
             context = {
                 "posts" : posts,
-                "post_comments" : post_comments
+                "friends": friends,
             }
 
         if request.user.is_authenticated:
@@ -31,24 +28,25 @@ class HomeView(View):
             image = request.FILES.get("image")
             video = request.FILES.get("video")
 
-            post_id = request.POST.get("post_id")
-            post = PostModel.objects.get(id = post_id)
 
             choice = request.POST.get("choice")
+            
+            if choice == "post_create":
+                PostModel.objects.create(
+                    user = request.user,
+                    text = text,
+                    image = image,
+                    video = video
+                )
 
-            PostModel.objects.create(
-                user = request.user,
-                text = text,
-                image = image,
-                 video = video
-            )
+            
+            if choice == "save_create":
+                SaveModel.objects.create(
+                    user = request.user,
+                    post = post
+                )
 
-            SaveModel.objects.create(
-                user = request.user,
-                post = post
-            )
-
-            return redirect()
+            return redirect("home")
         
         if choice == "comment":
              comment = request.POST.get("comment")
@@ -82,10 +80,14 @@ class HomeView(View):
             post_id = request.POST.get("post_id")
             post = PostModel.objects.get(id=post_id)
 
+            comment_id = request.POST.get("comment_id")
+            comment = CommentModel.objects.get(id = comment_id)
+
             if not LikeModel.objects.filter(user = request.user, post = post).exists():
                 LikeModel.objects.create(
                     user = request.user,
-                    post = post
+                    post = post,
+                    comment = comment
                 )
             else:
                 like = LikeModel.objects.get(user = request.user, post = post)

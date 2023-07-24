@@ -35,7 +35,7 @@ def check_validation(password):
         else:
             has_symbol = True
 
-        return has_digit and has_upper_case and has_lower_case and has_symbol
+    return has_digit and has_upper_case and has_lower_case and has_symbol
     
 class SignupView(View):
     def get(self,request,*args,**kwargs):
@@ -71,7 +71,7 @@ class SignupView(View):
                             gender = gender,
                             avatar = avatar
                         )
-                        return redirect("signup")
+                        return redirect("home")
                 # user = authenticate(request,email=email,password=password)
                 # if user is not None:
                 #     login(request,user)
@@ -84,7 +84,7 @@ class SignupView(View):
             if user is not None:
                 login(request,user)
                 messages.success(request,"You logged in")
-                return redirect()
+                return redirect("home")
             else:
                 if not AccountModel.objects.filter(email = email).exists():
                       messages.info(request,"Please enter correct email")

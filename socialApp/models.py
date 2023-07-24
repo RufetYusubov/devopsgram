@@ -31,7 +31,7 @@ class CommentModel(models.Model):
 class LikeModel(models.Model):
     user = models.ForeignKey(AccountModel,on_delete=models.CASCADE,related_name="user_likes")
     post = models.ForeignKey(PostModel,on_delete=models.CASCADE,related_name="post_likes",blank=True,null=True)
-    comment = models.ForeignKey(CommentModel,on_delete=models.CASCADE,related_name="comment_likes")
+    comment = models.ForeignKey(CommentModel,on_delete=models.CASCADE,related_name="comment_likes",blank=True,null=True)
 
 
     class Meta:

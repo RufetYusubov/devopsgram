@@ -66,6 +66,8 @@ class AccountModel(AbstractUser):
     email = models.EmailField(unique=True)
     avatar = models.ImageField(upload_to='avatars/',blank=True,null=True)
     birthday = models.DateField(blank=True,null=True)
+    work_at = models.CharField(max_length=100,blank=True,null=True)
+    live_in = models.CharField(max_length=100, blank=True,null=True)
     Gender_Choices = (
         ('Female' , 'Female'),
         ('Male','Male')

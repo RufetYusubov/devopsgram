@@ -1,9 +1,9 @@
 {% extends 'base.html' %} 
 {% block title %} 
-home
+Home 
 {% endblock %} 
 
-
+{% load static %}
 <body>
 
 
@@ -17,7 +17,7 @@ home
 
         <div class="collapse navbar-collapse" id="responsive">
             <ul class="navbar-nav mr-auto text-capitalize">
-                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link active">home</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link active">home</a></li>
                 <li class="nav-item"><a href="profile.html" class="nav-link">profile</a></li>
                 <li class="nav-item"><a href="#modalview" class="nav-link" data-toggle="modal">messages</a></li>
                 <li class="nav-item"><a href="notification.html" class="nav-link">docs</a></li>
@@ -302,6 +302,32 @@ home
 
 
 
+                    <div class="card shadow-sm card-left3 mb-4">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Photos<small class="ml-2"><a href="#">.Edit </a></small></h5>
+
+                            <div class="row">
+                                <div class="col-6 p-1">
+                                    <a href="img/left1.jpg" data-lightbox="id" ><img src="img/left1.jpg" alt="img" class="img-fluid my-2"></a>  
+                                    <a href="img/left2.jpg"data-lightbox="id"><img src="img/left2.jpg" alt="img" class="img-fluid my-2"></a>
+                                    <a href="img/left3.jpg"data-lightbox="id"><img src="img/left3.jpg" alt="img" class="img-fluid my-2"></a>
+
+                                </div>
+
+
+                                <div class="col-6 p-1">
+                                        <a href="img/left4.jpg"data-lightbox="id"><img src="img/left4.jpg" alt="img" class="img-fluid my-2"></a>
+                                        <a href="img/left5.jpg"data-lightbox="id"><img src="img/left5.jpg" alt="img" class="img-fluid my-2"></a>
+                                        <a href="img/left6.jpg"data-lightbox="id"><img src="img/left6.jpg" alt="img" class="img-fluid my-2"></a>
+    
+                                    </div>
+
+                            </div>
+
+                        </div>
+
+
 
 
 
@@ -470,6 +496,54 @@ home
                              
  <hr>
 
+<div class="card-body">
+
+    <div class="media">
+            <img src="img/avatar-fat.jpg" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
+
+        <div class="media-body">
+                <h5>Jacob Thornton</h5>
+                <p class="text-justify">Donec id elit non mi porta gravida at eget metus. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+                    Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+
+
+        </div>
+
+        <small>14 min</small>
+
+    </div>
+
+
+
+
+
+</div>
+<hr>
+
+<div class="card-body">
+
+    <div class="media">
+
+            <img src="img/avatar-mdo.png" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
+            <div class="media-body">
+                <h5>Mark Otto</h5>
+                <p class="text-justify">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+             <a href="img/mid5.jpg" data-lightbox="id"><img src="img/mid5.jpg" alt="" class="img-fluid shadow-sm img-thumbnail">   </a>   
+
+            </div>
+
+
+            <small class="text-muted">10 min</small>
+
+
+
+    </div>
+
+
+
+
+</div>
 
 
 
@@ -512,7 +586,6 @@ home
 
 
   <br> <br> <br><br> <br> <br>
-
 
 <!------------------------Middle column Ends---------------->
 
@@ -571,11 +644,56 @@ home
 
             </div>
 
+            <div class="card-footer">
+
+                <p class="lead" style="font-size:18px;">Dave really likes these nerds, no one knows why though.</p>
+            </div>
             
 
 
         </div>
 
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <p>&copy; 2018 Bootstrap
+
+
+
+                        <a href="#">About</a>
+                        <a href="#">Help</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Privacy</a>
+                        <a href="#">Cookies</a>
+                        <a href="#">Ads </a>
+                        <a href="#">Info</a>
+                        <a href="#">Brand</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Status</a>
+                        <a href="#">Apps</a>
+                        <a href="#">Jobs</a>
+                        <a href="#">Advertise</a>
+
+                    
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                </p>
+            </div>
+
+        </div>
 
 
 
@@ -621,7 +739,9 @@ home
 
 
 </div>
+</body>
 {% endblock %}
+
 
 
 
@@ -659,3 +779,29 @@ home
 
 
 
+
+<!------------------------Light BOx OPtions------------->
+<script>
+        lightbox.option({
+          
+        })
+    </script>
+
+
+
+<!------------------------Light BOx OPtions------------->
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
