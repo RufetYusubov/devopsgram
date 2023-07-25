@@ -101,34 +101,79 @@ class Changepassword(View):
           
           return render(request,"changepassword.html")
      def post(self,request,*args,**kwargs):
-          if not request.user.is_authenticated:
+        if request.user.is_authenticated:
               raise Http404
-          email = request.POST.get("email")
-          newpassword1 = request.POST.get("newpassword1")
-          newpassword2 = request.POST.get("newpassword2")
+        email = request.POST.get("email")
+        newpassword1 = request.POST.get("newpassword1")
+        newpassword2 = request.POST.get("newpassword2")
 
-          user = AccountModel.objects.get(email = email)
-          if not AccountModel.objects.filter(email = email).exists():
-             if newpassword1 == newpassword2 and check_password(newpassword1) and check_validation(newpassword2):
-                    AccountModel.objects.create_user(
-                            email = email,
-                            password = newpassword1,
-                    )
-                    return redirect("login")
-             else:
-                    if newpassword1 != newpassword2:
-                            messages.info(request,"There is a password mismatch")
-                    elif not check_password(newpassword1):
-                            messages.info(request,"Password must be at least 8 symbols")
-                    elif not check_validation(newpassword2):
-                            messages.info(request,"Password must be at least 8 symbols")
-                    return redirect("changepassword")
-          else:
-               messages.info(request,"Email has been taken")
-               return redirect("changepassword")
+        user = AccountModel.objects.get(email = email)
+        if newpassword1 == newpassword2:
+                user.set_password(newpassword1)
+                user.save()
+                messages.success(request, "Password changed")
+
+        return redirect("signup")
 #---------------------------------------------------------------------------------------
+class SettingsView(View):
+     def get(self,request,*args,**kwargs):
+          
+          return render(request,"settings.html")
+     
+     def post(self,request,*args,**kwargs):
+        if not request.user.is_authenticated:
+               raise Http404
+         
+        firstname = request.POST.get("firstname")
+        lastname = request.POST.get("lastname")
+        email = request.POST.get("email")
+        avatar = request.FILES.get("avatar")
+        birtday = request.POST.get("birtday")
+        work_at = request.POST.get("work_at")
+        live_in = request.POST.get("live_in")
+        gender = request.POST.get("gender")
+        oldpassword = request.POST.get("oldpassword")
+        newpassword = request.POST.get("newpassword")
 
-
+        if firstname:
+              request.user.first_name = firstname
+              request.user.save()
+        if lastname:
+             request.user.last_name = lastname
+             request.user.save()
+        if email:
+             request.user.email = email
+             request.user.save()
+        if avatar:
+             request.user.avatar = avatar
+             request.user.save()
+        if birtday:
+             request.user.birthday = birtday
+             request.user.save()
+        if work_at:
+             request.user.work_at = work_at
+             request.user.save()
+        if live_in:
+             request.user.live_in = live_in
+             request.user.save()
+        if gender:
+             request.user.gender = gender
+             request.user.save()
+        if oldpassword and newpassword:
+            if request.user.check_password(oldpassword):
+                if not check_password(newpassword):
+                       messages.info(request,"Password must be at least 8 symbols")
+                elif not check_validation(newpassword):
+                    messages.info(request, "Password must contain both characters and numbers")
+                else:
+                    request.user.set_password(newpassword)
+                    request.user.save()
+            else:
+                messages.info(request, "Please enter correct oldpassword")
+                return redirect("settings")
+        return render(request,"settings.html")
+          
+          
 
 
                 

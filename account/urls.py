@@ -3,5 +3,7 @@ from account import views
 
 urlpatterns = [
     path('signup/',views.SignupView.as_view(),name="signup"),
-    path('logout/',views.logoutUser,name="logout")
+    path('logout/',views.logoutUser,name="logout"),
+    path('changepassword/',views.Changepassword.as_view(),name="changepassword"),
+    path('settings/',views.SettingsView.as_view(),name="settings")
 ]

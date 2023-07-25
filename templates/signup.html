@@ -14,8 +14,8 @@
                     {% csrf_token %} 
                     <input type="hidden" name="choice" value="login">
                     <li>Email or Phone<br><input type="text" name="email"></li>
-                    <li>Password<br><input type="password" name="password"><br><a href="">Forgotten account?</a></li>
-                    <li><input type="submit" name="login" value="Log In"></li>
+                    <li>Password<br><input type="password" name="password"><br><a href="{% url 'changepassword' %}">Forgotten account?</a></li>
+                    <li><input type="submit" name="login" value="login"></li>
                 </form>
 
             </div>

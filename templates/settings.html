@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+Settings
+
+{% endblock %} 
+{% load static %} 
+<body>
+
+
+    <!-------------------------------NAvigation Starts------------------>
+{% block header %}
+    <nav class="navbar navbar-expand-md navbar-dark mb-4" style="background-color:#3097D1">
+        <a href="{% url 'home' %}" class="navbar-brand"><img src="{% static 'img/brand-white.png' %}" alt="logo" class="img-fluid" width="80px" height="100px"></a>
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#responsive"><span class="navbar-toggler-icon"></span></button>
+
+
+        <div class="collapse navbar-collapse" id="responsive">
+            <ul class="navbar-nav mr-auto text-capitalize">
+                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link active">home</a></li>
+                <li class="nav-item"><a href="profile.html" class="nav-link">profile</a></li>
+                <li class="nav-item"><a href="#modalview" class="nav-link" data-toggle="modal">messages</a></li>
+                <li class="nav-item"><a href="notification.html" class="nav-link">docs</a></li>
+                <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">logout</a></li>
+
+            </ul>
+
+            <form action="" class="form-inline ml-auto d-none d-md-block">
+                <input type="text" name="search" id="search" placeholder="Search" class="form-control form-control-sm">
+            </form>
+            <a href="notification.html" class="text-decoration-none" style="color:#CBE4F2;font-size:22px;"><i class="far fa-bell ml-3 d-none d-md-block"></i></a> 
+            <img src="{% static 'img/avatar-dhg.png' %}" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px" height="32px">
+
+
+
+
+
+        </div>
+
+
+
+
+
+    </nav>
+{% endblock %}
+{% block content %}
+<div class = "container mt-3" >
+    <h1>Settings</h1>
+    <form method = "POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Avatar</label>
+            <input type="file" name="avatar" class="form-control" id="exampleInputPassword1" placeholder="{{ request.user.first_name }}">
+          </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">First name</label>
+            <input type="text" name="firstname" class="form-control" id="exampleInputPassword1" placeholder="{{ request.user.first_name }}">
+          </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Last name</label>
+            <input type="text" name="lastname" class="form-control" id="exampleInputPassword1" placeholder="{{request.user.last_name }}">
+          </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Email</label>
+          <input type="text" name="email" class="form-control" id="exampleInputPassword1" placeholder="{{ request.user.email }}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Birthday</label>
+            <input type="date" name="birthday" class="form-control" id="exampleInputPassword1" placeholder="">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Gender</label><br>
+            <input type="radio" name="gender">Female <input type="radio" name="gender">Male
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Work at</label>
+            <input type="text" name="work_at" class="form-control" id="exampleInputPassword1" placeholder="">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Live in</label>
+            <input type="text" name="live_in" class="form-control" id="exampleInputPassword1" placeholder="">
+          </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Old Password</label>
+          <input type="password" name="oldpassword" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">New Password</label>
+            <input type="password" name = "newpassword" class="form-control" id="exampleInputPassword1">
+          </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+      {% if messages %}
+      <ul class="messages">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+</div>
+{% endblock %} 
+</body>
