@@ -5,16 +5,6 @@ from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.http import Http404
 
-# def create_username(first_name, last_name):
-#     count = 0
-#     name = first_name.lower() + last_name.lower() # rufetyusubov
-#     username = name # rufetyusubov
-#     while True:
-#         if AccountModel.objects.filter(username=username).exists():
-#             username = name + str(count) # rufetyusubov2
-#             count += 1
-#         else:
-#             return username
         
 
 def check_password(password):
@@ -48,7 +38,6 @@ class SignupView(View):
         password = request.POST.get("password")
         birthday = request.POST.get("birthday")
         gender = request.POST.get("gender")
-        avatar = request.FILES.get("avatar")
 
         choice = request.POST.get("choice")
     
@@ -69,13 +58,11 @@ class SignupView(View):
                             password = password,
                             birthday = birthday,
                             gender = gender,
-                            avatar = avatar
-                        )
-                        return redirect("home")
-                # user = authenticate(request,email=email,password=password)
-                # if user is not None:
-                #     login(request,user)
-                #     return redirect()
+                        )                   
+                user = authenticate(request,email=email,password=password)
+                if user is not None:
+                    login(request,user)
+                    return redirect("home")
             else:
                     messages.info(request,"Email has been taken")
                     return redirect("signup")
@@ -108,12 +95,19 @@ class Changepassword(View):
         newpassword2 = request.POST.get("newpassword2")
 
         user = AccountModel.objects.get(email = email)
-        if newpassword1 == newpassword2:
+        if newpassword1 == newpassword2 and check_password(newpassword1) and check_validation(newpassword1):
                 user.set_password(newpassword1)
                 user.save()
                 messages.success(request, "Password changed")
-
-        return redirect("signup")
+                return redirect("login")
+        else:
+            if newpassword1 != newpassword2:
+                messages.info(request, "There is a password mismatch")
+            elif not check_password(newpassword1):
+                messages.info(request, "Password must be at least 8 symbols")
+            elif not check_validation(newpassword1):
+                messages.info(request, "Password must contain both characters and numbers")
+            return redirect("changepassword")
 #---------------------------------------------------------------------------------------
 class SettingsView(View):
      def get(self,request,*args,**kwargs):
@@ -141,7 +135,7 @@ class SettingsView(View):
         if lastname:
              request.user.last_name = lastname
              request.user.save()
-        if email:
+        if not AccountModel.objects.filter(email=email).exists():
              request.user.email = email
              request.user.save()
         if avatar:

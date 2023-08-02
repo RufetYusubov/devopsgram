@@ -9,27 +9,25 @@ class HomeView(View):
             posts = PostModel.objects.filter(
                 user__in = friends
             )
+            user_comments = CommentModel.objects.filter(
+                user = request.user, 
+            )
 
             context = {
                 "posts" : posts,
                 "friends": friends,
+                "user_comments" : user_comments
             }
-
-        if request.user.is_authenticated:
-            user_comments = CommentModel.objects.filter(
-                user = request.user, 
-            )
-            context["user_comments"] = user_comments
         return render(request,"home.html",context)
     
     def post(self,request,*args,**kwargs):
+        choice = request.POST.get("choice")
         if request.user.is_authenticated:
             text = request.POST.get("text")
             image = request.FILES.get("image")
             video = request.FILES.get("video")
 
 
-            choice = request.POST.get("choice")
             
             if choice == "post_create":
                 PostModel.objects.create(
@@ -40,65 +38,46 @@ class HomeView(View):
                 )
 
             
-            if choice == "save_create":
+            elif choice == "save_create":
                 SaveModel.objects.create(
                     user = request.user,
                     post = post
                 )
-
-            return redirect("home")
         
-        if choice == "comment":
-             comment = request.POST.get("comment")
-             post_id = request.POST.get("post_id")
+            elif choice == "comment":
+                comment = request.POST.get("comment")
+                post_id = request.POST.get("post_id")
 
-             post = PostModel.objects.get(id=post_id)
+                post = PostModel.objects.get(id=post_id)
 
-             CommentModel.objects.create(
-                 user = request.user,
-                 post = post,
-                 comment = comment,
-             )    
-
-        elif choice == "reply":
-            reply = request.POST.get("reply")
-
-            comment_id = request.POST.get("comment_id")
-            comment = CommentModel.objects.get(id=comment_id)
-
-            post_id = request.POST.get("post_id")
-            post = PostModel.objects.get(id=post_id)
-
-            CommentModel.objects.create(
-                user = request.user,
-                post = post,
-                comment = reply,
-                parent = comment
-            )
-        elif choice == "like":
-            like = request.POST.get("like")
-            post_id = request.POST.get("post_id")
-            post = PostModel.objects.get(id=post_id)
-
-            comment_id = request.POST.get("comment_id")
-            comment = CommentModel.objects.get(id = comment_id)
-
-            if not LikeModel.objects.filter(user = request.user, post = post).exists():
-                LikeModel.objects.create(
+                CommentModel.objects.create(
                     user = request.user,
                     post = post,
-                    comment = comment
-                )
-            else:
-                like = LikeModel.objects.get(user = request.user, post = post)
-                like.delete()
+                    comment = comment,
+                )    
 
-        return redirect()
+            elif choice == "reply":
+                reply = request.POST.get("reply")
+
+                comment_id = request.POST.get("comment_id")
+                comment = CommentModel.objects.get(id=comment_id)
+
+                post_id = request.POST.get("post_id")
+                post = PostModel.objects.get(id=post_id)
+
+                CommentModel.objects.create(
+                    user = request.user,
+                    post = post,
+                    comment = reply,
+                    parent = comment
+                )
+
+            return redirect("home")
 #---------------------------------------------------------------------------------
 def DeleteComment(request,id):
     comment = CommentModel.objects.get(id=id)
     comment.delete()
-    return redirect()
+    return redirect("home")
 #---------------------------------------------------------------------------------
 class MySavePost(View):
     def get(self,request,*args,**kwargs):
