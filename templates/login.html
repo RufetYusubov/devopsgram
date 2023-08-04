@@ -1,4 +1,4 @@
-﻿{% extends 'base.html' %} 
+{% extends 'base.html' %} 
   {% block css %}
     {% load static %}
     <title>{% block title %} Login {% endblock %}</title>
@@ -26,34 +26,16 @@
                     <form method="POST">
                         {% csrf_token %}
                         <div class="input-group">
-                            <input class="input--style-1" type="text" placeholder="NAME" name="firstname">
-                        </div>
-                        <div class="input-group">
-                            <input class="input--style-1" type="text" placeholder="SURNAME" name="lastname">
-                        </div>
-                        <div class="input-group">
                             <input class="input--style-1" type="email" placeholder="EMAIL" name="email">
                         </div>
                         <div class="input-group">
                             <input class="input--style-1" type="password" placeholder="PASSWORD" name="password">
                         </div>
-                        <div class="input-group">
-                            <p>Birthday</p>
-
-                                <!-- <select><option>Day</option></select>
-                                <select><option>Month</option></select>
-                                <select><option>Year</option></select> -->
-                                <input type="date" name="birthday">
-        
-                            <label for="k">Male</label>
-                            <input type="radio" name="gender" id="k">
-                            <label for="q">Famale</label>
-                            <input type="radio" name="gender" id="q">
-                       </div>
                         <div class="p-t-20">
                             <button class="btn btn--radius btn--green" type="submit">Submit</button>
                         </div>
-                        <a href="{% url 'login' %}">Have account?</a>
+                        <a href="{% url 'signup' %}">Create my account</a><br>
+                        <a href="{% url 'changepassword' %}">Forgot your password?</a>
                     </form>
                 </div>
             </div>
@@ -73,4 +55,7 @@
 <!-- Main JS-->
 <script src="{% static 'js/global.js' %}"></script>
 {% endblock %}
+
+
+
 

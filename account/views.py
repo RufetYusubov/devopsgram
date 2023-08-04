@@ -39,11 +39,8 @@ class SignupView(View):
         birthday = request.POST.get("birthday")
         gender = request.POST.get("gender")
 
-        choice = request.POST.get("choice")
-    
-        if choice == "signup":
         
-            if not AccountModel.objects.filter(email = email).exists():
+        if not AccountModel.objects.filter(email = email).exists():
                 if not check_password(password):
                         messages.info(request,"Password must be at least 8 symbols")
                         return redirect("signup")
@@ -63,21 +60,28 @@ class SignupView(View):
                 if user is not None:
                     login(request,user)
                     return redirect("home")
-            else:
+        else:
                     messages.info(request,"Email has been taken")
                     return redirect("signup")
-        if choice == "login":
-            user = authenticate(request, email = email, password = password)
-            if user is not None:
+        return redirect(request,'signup.html')
+class LoginUserView(View):
+     def get(self,request,*args,**kwargs):
+          return render(request,"login.html")
+     def post(self,request,*args,**kwargs):
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        user = authenticate(request, email = email, password = password)
+        if user is not None:
                 login(request,user)
                 messages.success(request,"You logged in")
                 return redirect("home")
-            else:
+        else:
                 if not AccountModel.objects.filter(email = email).exists():
                       messages.info(request,"Please enter correct email")
                 else:
                      messages.info(request,"Please, enter correct password")
-                return redirect("signup")
+                return redirect("login")
 #----------------------------------------------------------------------------------------------
 def logoutUser(request):
     logout(request)
