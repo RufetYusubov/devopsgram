@@ -92,30 +92,76 @@ Home
 
 
         <div class="middle-panel">
+            <div class="story-section">
 
-            <div class="post create">
-                <div class="post-top">
-                    <div class="dp">
+                <div class="story create">
+                    <div class="dp-image">
+                        <img src="./images/dp.jpg" alt="Profile pic">
+                    </div>
+                    <span class="dp-container">
+                        <i class="fa fa-plus"></i>
+                    </span>
+                    <span class="name">Create Story</span>
+                </div>
+
+
+                <div class="story">
+                    <img src="./images/model.jpg" alt="Anuska's story">
+                    <div class="dp-container">
                         <img src="./images/girl.jpg" alt="">
                     </div>
-                    <input type="text" placeholder="What's on your mind, Aashish ?" />
+                    <p class="name">Anuska Sharma</p>
                 </div>
-                
-                <div class="post-bottom">
-                    <div class="action">
-                        <i class="fa fa-video"></i>
-                        <span>Live video</span>
-                    </div>
-                    <div class="action">
-                        <i class="fa fa-image"></i>
-                        <span>Photo/Video</span>
-                    </div>
-                    <div class="action">
-                        <i class="fa fa-smile"></i>
-                        <span>Feeling/Activity</span>
-                    </div>
+
+                <div class="story">
+                    <img src="./images/boy.jpg" alt="Story image">
+                    <span class="dp-container">
+                        <img src="./images/dp.jpg" alt="Profile pic">
+                    </span>
+                    <span class="name">Gaurav Gall</span>
+                </div>
+
+                <div class="story">
+                    <img src="./images/mountains.jpg" alt="Story image">
+                    <span class="dp-container">
+                        <img src="./images/boy.jpg" alt="Profile pic">
+                    </span>
+                    <span class="name">Priyank Saksena</span>
+                </div>
+
+                <div class="story">
+                    <img src="./images/shoes.jpg" alt="Story image">
+                    <span class="dp-container">
+                        <img src="./images/model.jpg" alt="Profile pic">
+                    </span>
+                    <span class="name">Pragati Adhikari</span>
                 </div>
             </div>
+
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="choice" value="post_create">
+                <div class="post create">
+                    <div class="post-top">
+                        <div class="dp">
+                            <img src="" alt="">
+                        </div>
+                        <input name="text" type="text" placeholder="What's on your mind, Aashish ?" />
+                    </div>
+                    
+                    <div class="post-bottom">
+                        <div class="action">
+                            <i class="fa fa-video"><input type="file" name="video"></i>
+                            <span>Video</span>
+                        </div>
+                        <div class="action">
+                            <i class="fa fa-image"><input type="file" name="image"></i>
+                            <span>Photo</span>
+                        </div>
+                    </div>
+                    <button class="post_button" type="submit">Post</button>
+                </div>
+            </form>
 
             <div class="post">
                 <div class="post-top">

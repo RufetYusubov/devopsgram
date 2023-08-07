@@ -6,6 +6,7 @@ class PostModel(models.Model):
     text = models.TextField(blank=True,null=True)
     image = models.ImageField(upload_to='posters/',blank=True,null=True)
     video = models.FileField(upload_to='videos/',blank=True,null=True)
+    pub_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = "Post"
