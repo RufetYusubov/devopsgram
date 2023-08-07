@@ -1,7 +1,7 @@
 {% extends 'base.html' %} 
-  {% block css %}
-    {% load static %}
-    <title>{% block title %} Login {% endblock %}</title>
+{% block title %} Login {% endblock %}
+{% block css %}
+{% load static %}
         <!-- Icons font CSS-->
         <link href="{% static 'vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
         <link href="{% static 'vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
@@ -14,8 +14,8 @@
     
         <!-- Main CSS-->
         <link href="{% static 'css/main.css' %}" rel="stylesheet" media="all">
-  {% endblock %}
-  {% block content %} 
+{% endblock %}
+{% block content %} 
   <body>
     <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
         <div class="wrapper wrapper--w680">
@@ -42,7 +42,7 @@
         </div>
     </div>
    </body>
-   {% endblock %}
+{% endblock %}
 
 {% block javascript %}
 <!-- Jquery JS-->

@@ -4,701 +4,321 @@ Home
 {% endblock %} 
 
 {% load static %}
+{% block content %}
 <body>
 
+    <nav>
+        <div class="nav-left">
+            <img src="{% static 'images/devops.png' %}" alt="Logo">
+            <input type="text" placeholder="Search Mediabook..">
+        </div>
 
-    <!-------------------------------NAvigation Starts------------------>
-{% block header %}
-    <nav class="navbar navbar-expand-md navbar-dark mb-4" style="background-color:#3097D1">
-        <a href="{% url 'home' %}" class="navbar-brand"><img src="{% static 'img/brand-white.png' %}" alt="logo" class="img-fluid" width="80px" height="100px"></a>
+        <div class="nav-middle">
+            <a href="#" class="active">
+                <i class="fa fa-home"></i>
+            </a>
 
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#responsive"><span class="navbar-toggler-icon"></span></button>
+            <a href="#">
+                <i class="fa fa-user-friends"></i>
+            </a>
+
+            <a href="#">
+                <i class="fa fa-play-circle"></i>
+            </a>
+
+            <a href="#">
+                <i class="fa fa-users"></i>
+            </a>
+        </div>
+
+        <div class="nav-right">
+            <span class="profile"></span>
+
+            <a href="#">
+                <i class="fa fa-bell"></i>
+            </a>
+
+            <a href="#">
+                <i class="fa fa-sign-out"></i>
+            </a>
+        </div>
+    </nav>
 
 
-        <div class="collapse navbar-collapse" id="responsive">
-            <ul class="navbar-nav mr-auto text-capitalize">
-                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link active">home</a></li>
-                <li class="nav-item"><a href="profile.html" class="nav-link">profile</a></li>
-                <li class="nav-item"><a href="#modalview" class="nav-link" data-toggle="modal">messages</a></li>
-                <li class="nav-item"><a href="notification.html" class="nav-link">docs</a></li>
-                <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">logout</a></li>
-
+    <div class="container">
+        <div class="left-panel">
+            <ul>
+                <li>
+                    <span class="profile"></span>
+                    <p>Aashish Panthi</p>
+                </li>
+                <li>
+                    <i class="fa fa-user-friends"></i>
+                    <p>Friends</p>
+                </li>
+                <li>
+                    <i class="fa fa-address-book"></i>
+                    <p>About</p>
+                </li>
+                <li>
+                    <i class="fa fa-user-circle"></i>
+                    <p>My Page</p>
+                </li>
+                <li>
+                    <i class="fa fa-bookmark"></i>
+                    <p>Bookmark</p>
+                </li>
+                <li>
+                    <i class="fab fa-facebook-messenger"></i>
+                    <p>Messages</p>
+                </li>
+                <li>
+                    <i class="fa fa-bullhorn"></i>
+                    <p>Notification</p>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i>
+                    <p>Settings</p>
+                </li>
             </ul>
 
-            <form action="" class="form-inline ml-auto d-none d-md-block">
-                <input type="text" name="search" id="search" placeholder="Search" class="form-control form-control-sm">
-            </form>
-            <a href="notification.html" class="text-decoration-none" style="color:#CBE4F2;font-size:22px;"><i class="far fa-bell ml-3 d-none d-md-block"></i></a> 
-            <img src="{% static 'img/avatar-dhg.png' %}" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px" height="32px">
-
-
-
-
-
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Advance</a>
+                <a href="#">More</a>
+            </div>
         </div>
 
 
+        <div class="middle-panel">
 
-
-
-    </nav>
-{% endblock %}
-
-    <!---------------------------------------------Ends navigation------------------------------>
-
-    <!---------------------------MOdal Section  satrts------------------->
-
-    <div class="modal fade" id="modalview">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-
-            <div class="modal-content">
-
-
-                <div class="modal-header">
-                    <div class="modal-title h4">Messages</div>
-
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="post create">
+                <div class="post-top">
+                    <div class="dp">
+                        <img src="./images/girl.jpg" alt="">
+                    </div>
+                    <input type="text" placeholder="What's on your mind, Aashish ?" />
                 </div>
-
-
-                <div class="modal-body">
-
-
-                    <ul class="list-unstyled">
-
-
-                     <a href="#" class="text-decoration-none">
-                        <li class="media hover-media">
-                           
-                                <img src="img/avatar-dhg.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
-
-                                <div class="media-body text-dark">
-                                        <h6 class="media-header">Jchob Thunder and <strong> 1 others</strong></h6>
-                                        <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-
-                                </div>
-
-                        </li>
-                    </a>
-                    <hr class="my-3">
-
-
-                    
-                    <a href="#" class="text-decoration-none">
-                            <li class="media hover-media">
-                               
-                                    <img src="img/avatar-fat.jpg" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
-    
-                                    <div class="media-body text-dark">
-                                            <h6 class="media-header">Mark Otto and <strong> 3 others</strong></h6>
-                                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-    
-                                    </div>
-    
-                            </li>
-                        </a>
-
-
-                        <hr class="my-3">
-
-
-                        <a href="#" class="text-decoration-none">
-                            <li class="media hover-media">
-                               
-                                    <img src="img/avatar-mdo.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
-    
-                                    <div class="media-body text-dark">
-                                            <h6 class="media-header">Archer andu and <strong> 5 others</strong></h6>
-                                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-    
-                                    </div>
-    
-                            </li>
-                        </a>
-
-                        <hr class="my-3">
-
-
-                        <a href="#" class="text-decoration-none">
-                                <li class="media hover-media">
-                                   
-                                        <img src="img/avatar-dhg.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
-        
-                                        <div class="media-body text-dark">
-                                                <h6 class="media-header">Jchob Thunder and <strong> 1 others</strong></h6>
-                                                <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        
-                                        </div>
-        
-                                </li>
-                            </a>
-                            <hr class="my-3">
-        
-        
-                            
-                            <a href="#" class="text-decoration-none">
-                                    <li class="media hover-media">
-                                       
-                                            <img src="img/avatar-fat.jpg" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
-            
-                                            <div class="media-body text-dark">
-                                                    <h6 class="media-header">Mark Otto and <strong> 3 others</strong></h6>
-                                                    <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            
-                                            </div>
-            
-                                    </li>
-                                </a>
-        
-        
-                                <hr class="my-3">
-        
-        
-                                <a href="#" class="text-decoration-none">
-                                    <li class="media hover-media">
-                                       
-                                            <img src="img/avatar-mdo.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
-            
-                                            <div class="media-body text-dark">
-                                                    <h6 class="media-header">Archer andu and <strong> 5 others</strong></h6>
-                                                    <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            
-                                            </div>
-            
-                                    </li>
-                                </a>
-
-                        
-                                <hr class="my-3">
-                                <a href="#" class="text-decoration-none">
-                                        <li class="media hover-media">
-                                           
-                                                <img src="img/avatar-dhg.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
                 
-                                                <div class="media-body text-dark">
-                                                        <h6 class="media-header">Jchob Thunder and <strong> 1 others</strong></h6>
-                                                        <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                
-                                                </div>
-                
-                                        </li>
-                                    </a>
-                                    <hr class="my-3">
-                
-                
-                                    
-                                    <a href="#" class="text-decoration-none">
-                                            <li class="media hover-media">
-                                               
-                                                    <img src="img/avatar-fat.jpg" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
-                    
-                                                    <div class="media-body text-dark">
-                                                            <h6 class="media-header">Mark Otto and <strong> 3 others</strong></h6>
-                                                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    
-                                                    </div>
-                    
-                                            </li>
-                                        </a>
-                
-                
-                                        <hr class="my-3">
-                
-                
-                                        <a href="#" class="text-decoration-none">
-                                            <li class="media hover-media">
-                                               
-                                                    <img src="img/avatar-mdo.png" alt="img" width="60px" height="60px" class="rounded-circle mr-3">
-                    
-                                                    <div class="media-body text-dark">
-                                                            <h6 class="media-header">Archer andu and <strong> 5 others</strong></h6>
-                                                            <p class="media-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    
-                                                    </div>
-                    
-                                            </li>
-                                        </a>
-    
-    
-
-
-                    </ul>
-
-
-
-                    
-
+                <div class="post-bottom">
+                    <div class="action">
+                        <i class="fa fa-video"></i>
+                        <span>Live video</span>
+                    </div>
+                    <div class="action">
+                        <i class="fa fa-image"></i>
+                        <span>Photo/Video</span>
+                    </div>
+                    <div class="action">
+                        <i class="fa fa-smile"></i>
+                        <span>Feeling/Activity</span>
+                    </div>
                 </div>
             </div>
 
+            <div class="post">
+                <div class="post-top">
+                    <div class="dp">
+                        <img src="./images/girl.jpg" alt="">
+                    </div>
+                    <div class="post-info">
+                        <p class="name">Anuska Sharma</p>
+                        <span class="time">12 hrs ago</span>
+                    </div>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
 
+                <div class="post-content">
+                    Roses are red <br>
+                    Violets are blue <br>
+                    I'm ugly & you are too😏
+                </div>
+                
+                <div class="post-bottom">
+                    <div class="action">
+                        <i class="far fa-thumbs-up"></i>
+                        <span>Like</span>
+                    </div>
+                    <div class="action">
+                        <i class="far fa-comment"></i>
+                        <span>Comment</span>
+                    </div>
+                    <div class="action">
+                        <i class="fa fa-share"></i>
+                        <span>Share</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="post">
+                <div class="post-top">
+                    <div class="dp">
+                        <img src="./images/dp.jpg" alt="">
+                    </div>
+                    <div class="post-info">
+                        <p class="name">Ramesh GC</p>
+                        <span class="time">2 days ago</span>
+                    </div>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+
+                <div class="post-content">
+                    Mountains are so cool
+                    <img src="images/mountains.jpg" />
+                </div>
+                
+                <div class="post-bottom">
+                    <div class="action">
+                        <i class="far fa-thumbs-up"></i>
+                        <span>Like</span>
+                    </div>
+                    <div class="action">
+                        <i class="far fa-comment"></i>
+                        <span>Comment</span>
+                    </div>
+                    <div class="action">
+                        <i class="fa fa-share"></i>
+                        <span>Share</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="post">
+                <div class="post-top">
+                    <div class="dp">
+                        <img src="./images/boy.jpg" alt="">
+                    </div>
+                    <div class="post-info">
+                        <p class="name">Priyank Saksena</p>
+                        <span class="time">1 week ago</span>
+                    </div>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <div class="post-content">
+                    Happy birthday dear
+                    <img src="./images/girl_with_light.jpg" alt="Mountains">
+                </div>
+                <div class="post-bottom">
+                    <div class="action">
+                        <i class="far fa-thumbs-up"></i>
+                        <span>Like</span>
+                    </div>
+                    <div class="action">
+                        <i class="far fa-comment"></i>
+                        <span>Comment</span>
+                    </div>
+                    <div class="action">
+                        <i class="fa fa-share"></i>
+                        <span>Share</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="post">
+                <div class="post-top">
+                    <div class="dp">
+                        <img src="./images/model.jpg" alt="">
+                    </div>
+                    <div class="post-info">
+                        <p class="name">Pragati Adhikari</p>
+                        <span class="time">5 mins ago</span>
+                    </div>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <div class="post-content">
+                    Hey, everybody! My new shoes are here
+                    <img src="./images/shoes.jpg" alt="Shoes">
+                </div>
+                <div class="post-bottom">
+                    <div class="action">
+                        <i class="far fa-thumbs-up"></i>
+                        <span>Like</span>
+                    </div>
+                    <div class="action">
+                        <i class="far fa-comment"></i>
+                        <span>Comment</span>
+                    </div>
+                    <div class="action">
+                        <i class="fa fa-share"></i>
+                        <span>Share</span>
+                    </div>
+                </div>
+            </div>
+            
         </div>
+        <div class="right-panel">
+            <div class="pages-section">
+                <h4>Your pages</h4>
+                <a class='page' href="#">
+                    <div class="dp">
+                        <img src="./images/logo.png" alt="">
+                    </div>
+                    <p class="name">Cody</p>
+                </a>
 
+                <a class='page' href="#">
+                    <div class="dp">
+                        <img src="./images/dp.jpg" alt="">
+                    </div>
+                    <p class="name">Cody Tutorials</p>
+                </a>
+            </div>
 
+            <div class="friends-section">
+                <h4>Friends</h4>
+                <a class='friend' href="#">
+                    <div class="dp">
+                        <img src="./images/dp.jpg" alt="">
+                    </div>
+                    <p class="name">Henry Mosely</p>
+                </a>
+
+                <a class='friend' href="#">
+                    <div class="dp">
+                        <img src="./images/shoes.jpg" alt="">
+                    </div>
+                    <p class="name">George</p>
+                </a>
+
+                <a class="friend" href="#">
+                    <div class="dp">
+                        <img src="./images/boy.jpg" alt="">
+                    </div>
+                    <p class="name">Aakash Malhotra</p>
+                </a>
+
+                <a class="friend" href="#">
+                    <div class="dp">
+                        <img src="./images/model.jpg" alt="">
+                    </div>
+                    <p class="name">Ragini Khanna</p>
+                </a>
+
+                <a class="friend" href="#">
+                    <div class="dp">
+                        <img src="./images/boy.jpg" alt="">
+                    </div>
+                    <p class="name">Justin Bieber</p>
+                </a>
+
+                <a class="friend" href="#">
+                    <div class="dp">
+                        <img src="./images/dp.jpg" alt="">
+                    </div>
+                    <p class="name">Ramesh GC</p>
+                </a>
+
+                <a class="friend" href="#">
+                    <div class="dp">
+                        <img src="./images/model.jpg" alt="">
+                    </div>
+                    <p class="name">Sajita Gurung</p>
+                </a>
+                
+            </div>
+        </div>
     </div>
 
-    <!-------------------------------MOdal Ends---------------------------->
-
-
-
-    <!-------------------------------------------Start Grids layout for lg-xl-3 columns and (xs-lg 1 columns)--------------------------------->
-
-{% block content %}
-    <div class="container">
-        <div class="row">
-
-
-            <!--------------------------left columns  start-->
-
-            <div class="col-12 col-lg-3">
-
-                <div class="left-column">
-
-
-                    <div class="card card-left1 mb-4" >
-                        <img src="{% static 'img/photo-1455448972184-de647495d428.jpg' %}" alt="" class="card-img-top img-fluid">
-                        <div class="card-body text-center ">
-                            <img src="{% static 'img/avatar-dhg.png' %}" alt="img" width="120px" height="120px" class="rounded-circle mt-n5">
-                            <h5 class="card-title">{{ request.user.first_name }} {{ request.user.last_name }}</h5>
-                            <p class="card-text text-justify mb-2">{{ request.user.email }}</p>
-                            <ul class="list-unstyled nav justify-content-center">
-                               <a href="#" class="text-dark text-decoration-none"> <li class="nav-item">Friends <br> <strong>{{ friends | length }}</strong></li></a>
-                            </ul>
-
-                        </div>
-
-
-
-
-                    </div>
-
-
-                    <div class="card shadow-sm card-left2 mb-4">
-
-                        <div class="card-body">
-
-                                <h5 class="mb-3 card-title">About <small><a href="{% url 'settings' %}" class="ml-1">Edit</a></small></h5>
-
-                                <p class="card-text"> <i class="fas fa-calendar-week mr-2"></i> Birthday <a href="#" class="text-decoration-none">{{ request.user.birthday }}</a></p>
-
-                                <p class="card-text"> <i class="fas fa-user-friends mr-2"></i> Gender <a href="#" class="text-decoration-none">{{ request.user.gender }}</a></p>
-                                {% if request.user.work_at %}
-                                <p class="card-text"> <i class="far fa-building mr-2"></i> Work at <a href="#" class="text-decoration-none">{{ request.user.work_at }}</a></p>
-                                {% endif %} 
-                                {% if request.user.live_in %}
-                                <p class="card-text"> <i class="fas fa-home mr-2"></i> Live in <a href="#" class="text-decoration-none">{{ request.user.live_in }}</a></p>
-                                {% endif %}
-
-
-
-
-                        </div>
-                     
-
-
-
-
-                    </div>
-
-
-
-
-                    <div class="card shadow-sm card-left3 mb-4">
-
-                        <div class="card-body">
-                            <h5 class="card-title">Photos<small class="ml-2"><a href="#">.Edit </a></small></h5>
-
-                            <div class="row">
-                                <div class="col-6 p-1">
-                                    <a href="{% static 'img/left1.jpg' %}" data-lightbox="id" ><img src="{% static 'img/left1.jpg' %}" alt="img" class="img-fluid my-2"></a>  
-                                    <a href="{% static 'img/left2.jpg' %}"data-lightbox="id"><img src="{% static 'img/left2.jpg' %}" alt="img" class="img-fluid my-2"></a>
-                                    <a href="{% static 'img/left3.jpg' %}"data-lightbox="id"><img src="{% static 'img/left3.jpg' %}" alt="img" class="img-fluid my-2"></a>
-
-                                </div>
-
-
-                                <div class="col-6 p-1">
-                                        <a href="{% static 'img/left4.jpg' %}"data-lightbox="id"><img src="{% static 'img/left4.jpg' %}" alt="img" class="img-fluid my-2"></a>
-                                        <a href="{% static 'img/left5.jpg' %}"data-lightbox="id"><img src="{% static 'img/left5.jpg' %}" alt="img" class="img-fluid my-2"></a>
-                                        <a href="{% static 'img/left6.jpg' %}"data-lightbox="id"><img src="{% static 'img/left6.jpg' %}" alt="img" class="img-fluid my-2"></a>
-    
-                                    </div>
-
-                            </div>
-
-                        </div>
-
-
-
-
-
-
-
-                        </div>
-
-
-
-
-                   
-
-                    
-
-
-
-
-
-                </div>
-
-
-
-
-
-            </div>
-
-
-
-
-
-
-
-
- <!--------------------------Ends Left columns-->
-
-
-
-
-
- <!---------------------------------------Middle columns  start---------------->
-
-
-
-            
-            <div class="col-12 col-lg-6" >
-
-
-                <div class="middle-column">
-
-
-                    <div class="card" >
-
-
-                        <div class="card-header bg-transparent">
-                            <form role="form" class="post-to-timeline" method="POST">
-                                {% csrf_token %} 
-                                <input type="hidden" name="choice" value="post_create">
-                                <textarea name="text" class="form-control" style="height: 70px;margin-bottom:10px;" placeholder="Whats on your mind..."></textarea>
-                                <div class="row">
-                                <div class="col-sm-6">
-                                    <input type="file" name="video" class="form-control" class="file-input"><i class="fa fa-camera"></i>
-                                    <input type="file" name="image" class="form-control" class="file-input"><i class="fa fa-image"></i>
-                                </div>
-                                <div class="col-sm-6 text-right"><button type="submit" class="btn btn-primary">Post</button></div>
-                                </div>
-                            </form>
-
-                        </div>
-
-
-
-
-
-
-                           
-   <div class="card-body">
-
-    <div class="media">
-        {% for post in posts %}
-        <img src="{% static 'img/avatar-dhg.png' %}" alt="img" width="55px" height="55px" class="rounded-circle mr-3">
-
-        <div class="media-body">
-            <h5>{{ post.user.first_name }} {{ post.user.last_name }}</h5>
-            <p class="card-text text-justify">{{ post.text }}</p>
-            <div class="row no-gutters mb-3">
-                <div class="col-6 p-1 text-center">
-                    <img src="" alt="" class="img-fluid mb-2">
-                    <img src="img/aerial-view-architectural-design-buildings-2228123.jpg" alt="" class="img-fluid">
-                </div>
-            </div>
-           
-            <div class="media">
-                    {% if request.user.is_authenticated %}
-                    <form class="my-3" method="POST">
-                      {% csrf_token %}
-                      <input type = "hidden" name = "choice" value="comment">
-                      <input type="hidden" name = "post_id" value = "{{ post.id }}">       
-                      <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Your comment</label>
-                        <textarea class="form-control" name = "comment" id="exampleInputEmail1" aria-describedby="emailHelp"></textarea>
-                      </div>
-                      <button type="submit" class="btn btn-primary">Send</button>
-                    </form>
-                    {% else %}
-                    <p><a href="{% url 'login' %}">Login</a> to write comment </p>
-                    {% endif %}
-            
-                  {% for comment in post_comments %}
-                    <div class="card">
-                      <div class="card-header">
-                        {{ comment.user.first_name}} {{ comment.user.last_name}}
-                        {% if comment in user_comments %}
-                        <a href = "{% url 'delete_comment' comment.id %}" style = "float:right;">Delete</a>
-                        {% endif %}
-                      </div>
-                      <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                          <p>{{ comment.comment }}</p>
-                          <footer class="blockquote-footer">{{ comment.pub_date }}</cite></footer>
-                        </blockquote>
-                      </div>
-                    </div>
-            
-                      {% if request.user.is_authenticated %}
-                      <form class="mx-5 my-3" method="POST">
-                        {% csrf_token %}
-                        <input type = "hidden" name = "choice" value="reply">
-                        <input type="hidden" name = "post_id" value = "{{ post.id }}"> 
-                        <input type="hidden" name = "comment_id" value = "{{ comment.id }}">       
-                        <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label">Your reply</label>
-                          <textarea class="form-control" name = "reply" id="exampleInputEmail1" aria-describedby="emailHelp"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Reply</button>
-                      </form>
-                      {% endif %}
-                      
-                      {% for reply in comment.replies.all %}
-                        <div class="card my-3 mx-5">
-                          <div class="card-header">
-                            {{ reply.user.first_name}} {{ reply.user.last_name }}
-                            {% if reply in user_comments %}
-                            <a href = "{% url 'delete_comment' reply.id %}" style = "float:right;">Delete</a>
-                            {% endif %}
-                          </div>
-                          <div class="card-body">
-                            <blockquote class="blockquote mb-0">
-                              <p>{{ reply.comment }}</p>
-                              <footer class="blockquote-footer">{{ reply.pub_date }}</cite></footer>
-                            </blockquote>
-                          </div>
-                        </div>
-                      {% endfor %}
-                  {% endfor %}
-            </div>
-        </div>
-        <small>5min</small>
-    {% endfor %}
-    </div>
-   </div>                           
- <hr>                          
- </div>
- </div>
-</div>
-  <br> <br> <br><br> <br> <br>
-
-<!------------------------Middle column Ends---------------->
-
-
-
-
-
-
-
-
-<!---------------------------Statrs Right Columns----------------->
-
-
-                
-<div class="col-12 col-lg-3">
-
-
-    <div class="right-column">
-
-
-
-        <div class="card shadow-sm mb-4">
-
-            <div class="card-body">
-
-                    <h6 class="card-title ">Likes <a href="#" class="ml-1"><small>.View All</small> </a> </h6>
-                    <div class="row no-gutters d-none d-lg-flex">
-                        <div class="col-6 p-1">
-                                <img src="img/avatar-dhg.png" alt="img" width="80px" height="80px" class="rounded-circle mb-4">
-                                <img src="img/avatar-fat.jpg" alt="img" width="80px" height="80px" class="rounded-circle">
-
-
-
-                        </div>
-                        <div class="col-6 p-1 text-left">
-                            <h6>Jacob Thornton @fat</h6>
-                            <a href="#" class="btn btn-outline-info btn-sm mb-3"><i class="fas fa-user-friends"></i>Follow </a>
-
-                            <h6>Mark otto</h6>
-                            <a href="#" class="btn btn-outline-info  btn-sm"><i class="fas fa-user-friends"></i>Follow </a>
-
-                        </div>
-
-                    </div>
-
-            </div>
-
-            <div class="card-footer">
-
-                <p class="lead" style="font-size:18px;">Dave really likes these nerds, no one knows why though.</p>
-            </div>
-            
-
-
-        </div>
-
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <p>&copy; 2018 Bootstrap
-
-
-
-                        <a href="#">About</a>
-                        <a href="#">Help</a>
-                        <a href="#">Terms</a>
-                        <a href="#">Privacy</a>
-                        <a href="#">Cookies</a>
-                        <a href="#">Ads </a>
-                        <a href="#">Info</a>
-                        <a href="#">Brand</a>
-                        <a href="#">Blog</a>
-                        <a href="#">Status</a>
-                        <a href="#">Apps</a>
-                        <a href="#">Jobs</a>
-                        <a href="#">Advertise</a>
-
-                    
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                </p>
-            </div>
-
-        </div>
-
-
-
-
-
-
-
-
-
-    </div>
-
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-
-
-
-
-
-</div>
 </body>
 {% endblock %}
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!------------------------Light BOx OPtions------------->
-<script>
-        lightbox.option({
-          
-        })
-    </script>
-
-
-
-<!------------------------Light BOx OPtions------------->
-
-
-
-
-
-
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</body>
-</html>

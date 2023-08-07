@@ -74,6 +74,7 @@ class AccountModel(AbstractUser):
     )
     gender = models.CharField(max_length=20,blank=True,null=True,choices=Gender_Choices)
     friends = models.ManyToManyField("self",blank=True,null=True,related_name="user_friends")
+    cover_photo = models.ImageField(upload_to="cover_photos/",blank=True,null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
