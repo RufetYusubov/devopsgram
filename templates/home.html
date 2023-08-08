@@ -50,7 +50,7 @@ Home
             <ul>
                 <li>
                     <span class="profile"></span>
-                    <p>Aashish Panthi</p>
+                    <p>{{ request.user.first_name }} {{ request.user.last_name }}</p>
                 </li>
                 <li>
                     <i class="fa fa-user-friends"></i>
@@ -146,7 +146,7 @@ Home
                         <div class="dp">
                             <img src="" alt="">
                         </div>
-                        <input name="text" type="text" placeholder="What's on your mind, Aashish ?" />
+                        <input name="text" type="text" placeholder="What's on your mind, {{ request.user.first_name }} ?" />
                     </div>
                     
                     <div class="post-bottom">
@@ -164,21 +164,29 @@ Home
             </form>
 
             <div class="post">
+            {% for post in posts %}
                 <div class="post-top">
                     <div class="dp">
-                        <img src="./images/girl.jpg" alt="">
+                        <img src="{% static 'images/girl.jpg' %}" alt="">
                     </div>
                     <div class="post-info">
-                        <p class="name">Anuska Sharma</p>
-                        <span class="time">12 hrs ago</span>
+                        <p class="name">{{ post.user.first_name }} {{ post.user.last_name }}</p>
+                        <span class="time">{{ post.pub_date }}</span>
                     </div>
                     <i class="fas fa-ellipsis-h"></i>
                 </div>
 
                 <div class="post-content">
-                    Roses are red <br>
-                    Violets are blue <br>
-                    I'm ugly & you are too😏
+                   <p> {{ post.text }} </p>
+                   {% if post.image %}
+                   <img src="{{ post.image.url }}" alt="">
+                   {% endif %}
+                   {% if post.video %}
+                   <video controls>
+                    <source src="{{ post.video.url }}" type="video/mp4">
+                    <source src="{{ post.video.url }}" type="video/ogg">
+                  </video>
+                   {% endif %}
                 </div>
                 
                 <div class="post-bottom">
@@ -195,101 +203,7 @@ Home
                         <span>Share</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="post">
-                <div class="post-top">
-                    <div class="dp">
-                        <img src="./images/dp.jpg" alt="">
-                    </div>
-                    <div class="post-info">
-                        <p class="name">Ramesh GC</p>
-                        <span class="time">2 days ago</span>
-                    </div>
-                    <i class="fas fa-ellipsis-h"></i>
-                </div>
-
-                <div class="post-content">
-                    Mountains are so cool
-                    <img src="images/mountains.jpg" />
-                </div>
-                
-                <div class="post-bottom">
-                    <div class="action">
-                        <i class="far fa-thumbs-up"></i>
-                        <span>Like</span>
-                    </div>
-                    <div class="action">
-                        <i class="far fa-comment"></i>
-                        <span>Comment</span>
-                    </div>
-                    <div class="action">
-                        <i class="fa fa-share"></i>
-                        <span>Share</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="post">
-                <div class="post-top">
-                    <div class="dp">
-                        <img src="./images/boy.jpg" alt="">
-                    </div>
-                    <div class="post-info">
-                        <p class="name">Priyank Saksena</p>
-                        <span class="time">1 week ago</span>
-                    </div>
-                    <i class="fas fa-ellipsis-h"></i>
-                </div>
-                <div class="post-content">
-                    Happy birthday dear
-                    <img src="./images/girl_with_light.jpg" alt="Mountains">
-                </div>
-                <div class="post-bottom">
-                    <div class="action">
-                        <i class="far fa-thumbs-up"></i>
-                        <span>Like</span>
-                    </div>
-                    <div class="action">
-                        <i class="far fa-comment"></i>
-                        <span>Comment</span>
-                    </div>
-                    <div class="action">
-                        <i class="fa fa-share"></i>
-                        <span>Share</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="post">
-                <div class="post-top">
-                    <div class="dp">
-                        <img src="./images/model.jpg" alt="">
-                    </div>
-                    <div class="post-info">
-                        <p class="name">Pragati Adhikari</p>
-                        <span class="time">5 mins ago</span>
-                    </div>
-                    <i class="fas fa-ellipsis-h"></i>
-                </div>
-                <div class="post-content">
-                    Hey, everybody! My new shoes are here
-                    <img src="./images/shoes.jpg" alt="Shoes">
-                </div>
-                <div class="post-bottom">
-                    <div class="action">
-                        <i class="far fa-thumbs-up"></i>
-                        <span>Like</span>
-                    </div>
-                    <div class="action">
-                        <i class="far fa-comment"></i>
-                        <span>Comment</span>
-                    </div>
-                    <div class="action">
-                        <i class="fa fa-share"></i>
-                        <span>Share</span>
-                    </div>
-                </div>
+            {% endfor %}
             </div>
             
         </div>

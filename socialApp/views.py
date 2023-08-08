@@ -1,14 +1,17 @@
 from django.shortcuts import render,redirect
 from socialApp.models import PostModel,CommentModel,LikeModel,SaveModel
 from django.views.generic import View
+from django.db.models import Q
 
 class HomeView(View):
     def get(self,request,*args,**kwargs):
         if request.user.is_authenticated:
             friends = request.user.friends.all()
-            posts = PostModel.objects.filter(
-                user__in = friends
-            )
+            if friends or request.user:
+                posts = PostModel.objects.filter(
+                    Q(user__in = friends)|
+                    Q( user = request.user)
+                )
             user_comments = CommentModel.objects.filter(
                 user = request.user, 
             )
@@ -16,7 +19,7 @@ class HomeView(View):
             context = {
                 "posts" : posts,
                 "friends": friends,
-                "user_comments" : user_comments
+                "user_comments" : user_comments,
             }
         return render(request,"home.html",context)
     
