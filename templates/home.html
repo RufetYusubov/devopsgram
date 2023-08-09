@@ -196,21 +196,75 @@ Home
                       <input type = "hidden" name = "post_id" value = "{{ post.id }}">
                         <div class="action">
                             <i class="far fa-thumbs-up"></i>
-                            <button type = "submit" class="btn btn-primary">Like ({{ post.post_likes.all | length }})</button>
+                            <button class="post_like" type = "submit" >Like ({{ post.post_likes.all | length }})</button>
                         </div>
                     </form>
-                    <div class="action">
+                    <!-- <div class="action">
                         <i class="far fa-comment"></i>
                         <span>Comment</span>
-                    </div>
+                    </div> -->
                     <div class="action">
                         <i class="fa fa-share"></i>
                         <span>Share</span>
                     </div>
                 </div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="choice" value="comment">
+                    <input type="hidden" name="post_id" value="{{ post.id }}">
+                    <div class='comment_post'>    
+                        <label for='textarea-7680453'>Your comment</label>
+                        <textarea class='form-control' id='textarea-7680453' name='comment'  placeholder='Your comment...'></textarea>
+                    </div>
+                    <button type="submit"  class="btn btn-primary">Send</button>
+                </form>
+
+                {% for comment in post_comments %}
+                    <div class="col my-3">
+                        <div class="card">
+                            <div class="card-header bg-primary text-light">{{ comment.user.username }}
+                            <!-- {% if comment in user_comments %}
+                            <a class ="text-light" href="{% url 'delete_comment' comment.id %}" style="float: right;">Delete</a>
+                            {% endif %} -->
+                            </div>
+                            <div class="card-body">{{ comment.comment }}
+                            <div class="card-footer">
+                                <small>{{ comment.pub_date}} </small>
+                            </div>
+                            </div>
+                            <form action="" method="POST"></form>
+                            {% csrf_token %}
+                                <input type="hidden" name="choice" value="reply">
+                                <input type="hidden" name="post_id" value="{{ post.id }}">
+                                <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                                <div class='mb-3'>    
+                                    <label for='textarea-7680453'>Your reply</label>
+                                    <textarea class='form-control' id='textarea-7680453' name='reply'  placeholder='Your reply...'></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary ">Send</button>
+                            </form>
+                            {% for reply in comment.replies.all %}
+                                <div class="col my-3">
+                                    <div class="card mx-5" style="width:80%">
+                                        <div class="card-header bg-primary text-light">
+                                            {{ reply.user.username }}
+                                            {% if reply in post_comments %}
+                                            <a class="text-light" href="{% url 'delete_comment' reply.id %}" style="float: right;">Delete</a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="card-body">{{ reply.comment }}
+                                            <div class="card-footer">
+                                            <small>{{ reply.pub_date}} </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
             {% endfor %}
-            </div>
-            
+            </div>      
         </div>
         <div class="right-panel">
             <div class="pages-section">

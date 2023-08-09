@@ -63,7 +63,8 @@ class SignupView(View):
         else:
                     messages.info(request,"Email has been taken")
                     return redirect("signup")
-        return redirect(request,'signup.html')
+        return render(request,'signup.html')
+    
 class LoginUserView(View):
      def get(self,request,*args,**kwargs):
           return render(request,"login.html")
@@ -73,9 +74,9 @@ class LoginUserView(View):
 
         user = authenticate(request, email = email, password = password)
         if user is not None:
-                login(request,user)
-                messages.success(request,"You logged in")
-                return redirect("home")
+            login(request,user)
+            messages.success(request,"You logged in")
+            return redirect("home")
         else:
                 if not AccountModel.objects.filter(email = email).exists():
                       messages.info(request,"Please enter correct email")

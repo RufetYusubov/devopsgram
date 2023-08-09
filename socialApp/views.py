@@ -4,26 +4,30 @@ from django.views.generic import View
 from django.db.models import Q
 
 class HomeView(View):
-    def get(self,request,*args,**kwargs):
+    def get(self,request,id,*args,**kwargs):
         if request.user.is_authenticated:
+            post = PostModel.objects.get(id=id)
+            post_comments = CommentModel.objects.filter(
+                user = request.user,
+                post = post,
+                parent = None
+            )
             friends = request.user.friends.all()
             if friends or request.user:
                 posts = PostModel.objects.filter(
                     Q(user__in = friends)|
                     Q( user = request.user)
                 )
-            user_comments = CommentModel.objects.filter(
-                user = request.user, 
-            )
-
             context = {
+                "post" : post,
+                "post_comments" : post_comments,
                 "posts" : posts,
                 "friends": friends,
-                "user_comments" : user_comments,
-            }
+                }
+
         return render(request,"home.html",context)
     
-    def post(self,request,*args,**kwargs):
+    def post(self,request,id,*args,**kwargs):
         choice = request.POST.get("choice")
         if request.user.is_authenticated:
             text = request.POST.get("text")
@@ -102,7 +106,7 @@ class HomeView(View):
                     like.delete()
 
                 
-            return redirect("home")
+            return redirect("home", id=id)
 #---------------------------------------------------------------------------------
 def DeleteComment(request,id):
     comment = CommentModel.objects.get(id=id)
