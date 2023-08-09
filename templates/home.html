@@ -190,10 +190,15 @@ Home
                 </div>
                 
                 <div class="post-bottom">
-                    <div class="action">
-                        <i class="far fa-thumbs-up"></i>
-                        <span>Like</span>
-                    </div>
+                    <form action="" method="POST">
+                      {% csrf_token %}
+                      <input type = "hidden" name = "choice" value="like">
+                      <input type = "hidden" name = "post_id" value = "{{ post.id }}">
+                        <div class="action">
+                            <i class="far fa-thumbs-up"></i>
+                            <button type = "submit" class="btn btn-primary">Like ({{ post.post_likes.all | length }})</button>
+                        </div>
+                    </form>
                     <div class="action">
                         <i class="far fa-comment"></i>
                         <span>Comment</span>

@@ -74,7 +74,34 @@ class HomeView(View):
                     comment = reply,
                     parent = comment
                 )
+            elif choice == "like":
 
+                post_id = request.POST.get("post_id")
+                post = PostModel.objects.get(id=post_id)
+
+                if not LikeModel.objects.filter(user=request.user,post = post).exists():
+                    LikeModel.objects.create(
+                        user = request.user,
+                        post = post
+                    )
+                else :
+                    like = LikeModel.objects.get( user = request.user, post = post)
+                    like.delete()
+
+            elif choice == "like_comment":
+                comment_id = request.POST.get("comment_id")
+                comment = CommentModel.objects.get(id=comment_id)
+
+                if not LikeModel.objects.filter(user = request.user, comment = comment).exists():
+                    LikeModel.objects.create(
+                        user = request.user,
+                        comment = comment
+                    )
+                else:
+                    like = LikeModel.objects.get(user = request.user, comment = comment)
+                    like.delete()
+
+                
             return redirect("home")
 #---------------------------------------------------------------------------------
 def DeleteComment(request,id):
