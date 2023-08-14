@@ -203,10 +203,15 @@ Home
                         <i class="far fa-comment"></i>
                         <span>Comment</span>
                     </div> -->
-                    <div class="action">
-                        <i class="fa fa-share"></i>
-                        <span>Share</span>
-                    </div>
+                        <form action="" method="POST">
+                          {% csrf_token %}
+                          <input type="hidden" name="choice" value="save_create">
+                          <input type="hidden" name="post_id" id="{{ post.id }}">
+                            <div class="action">
+                                <i class="fa fa-bookmark"></i> 
+                                <button class="post_save" type="submit">Save </button>     
+                            </div>
+                        </form>
                 </div>
                 <form action="" method="POST">
                     {% csrf_token %}
@@ -219,40 +224,40 @@ Home
                     <button type="submit"  class="btn btn-primary">Send</button>
                 </form>
 
-                {% for comment in post_comments %}
+                {% for comment in post.post_comments.all %}
                     <div class="col my-3">
                         <div class="card">
-                            <div class="card-header bg-primary text-light">{{ comment.user.username }}
-                            <!-- {% if comment in user_comments %}
-                            <a class ="text-light" href="{% url 'delete_comment' comment.id %}" style="float: right;">Delete</a>
-                            {% endif %} -->
+                            <div class="card-header bg-primary text-light">{{ comment.user.first_name }} {{ comment.user.last_name }}
+                            {% if comment in user_comments %}
+                            <a  href="{% url 'delete_comment' comment.id %}" style="float: right;">Delete</a>
+                            {% endif %}
                             </div>
                             <div class="card-body">{{ comment.comment }}
                             <div class="card-footer">
                                 <small>{{ comment.pub_date}} </small>
                             </div>
                             </div>
-                            <form action="" method="POST"></form>
-                            {% csrf_token %}
+                            <form action="" method="POST">
+                                {% csrf_token %}
                                 <input type="hidden" name="choice" value="reply">
                                 <input type="hidden" name="post_id" value="{{ post.id }}">
                                 <input type="hidden" name="comment_id" value="{{ comment.id }}">
-                                <div class='mb-3'>    
+                                <div class='comment_post'>    
                                     <label for='textarea-7680453'>Your reply</label>
                                     <textarea class='form-control' id='textarea-7680453' name='reply'  placeholder='Your reply...'></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary ">Send</button>
                             </form>
-                            {% for reply in comment.replies.all %}
+                            {% for reply in parent.replies.all %}
                                 <div class="col my-3">
                                     <div class="card mx-5" style="width:80%">
                                         <div class="card-header bg-primary text-light">
-                                            {{ reply.user.username }}
-                                            {% if reply in post_comments %}
+                                            {{ reply.user.first_name }} {{ reply.user.last_name }}
+                                            {% if reply in user_comments %}
                                             <a class="text-light" href="{% url 'delete_comment' reply.id %}" style="float: right;">Delete</a>
                                             {% endif %}
                                         </div>
-                                        <div class="card-body">{{ reply.comment }}
+                                        <div class="card-body">{{ reply.reply }}
                                             <div class="card-footer">
                                             <small>{{ reply.pub_date}} </small>
                                             </div>

@@ -4,14 +4,7 @@ from django.views.generic import View
 from django.db.models import Q
 
 class HomeView(View):
-    def get(self,request,id,*args,**kwargs):
-        if request.user.is_authenticated:
-            post = PostModel.objects.get(id=id)
-            post_comments = CommentModel.objects.filter(
-                user = request.user,
-                post = post,
-                parent = None
-            )
+    def get(self,request,*args,**kwargs):
             friends = request.user.friends.all()
             if friends or request.user:
                 posts = PostModel.objects.filter(
@@ -19,15 +12,18 @@ class HomeView(View):
                     Q( user = request.user)
                 )
             context = {
-                "post" : post,
-                "post_comments" : post_comments,
                 "posts" : posts,
                 "friends": friends,
                 }
+            if request.user.is_authenticated:
+                user_comments = CommentModel.objects.filter(
+                    user = request.user
+                )
+                context["user_comments"] = user_comments
 
-        return render(request,"home.html",context)
+            return render(request,"home.html",context)
     
-    def post(self,request,id,*args,**kwargs):
+    def post(self,request,*args,**kwargs):
         choice = request.POST.get("choice")
         if request.user.is_authenticated:
             text = request.POST.get("text")
@@ -46,7 +42,10 @@ class HomeView(View):
 
             
             elif choice == "save_create":
-                SaveModel.objects.create(
+                post_id = request.POST.get("post_id")
+                post = PostModel.objects.get(id=post_id)
+
+                save_post = SaveModel.objects.create(
                     user = request.user,
                     post = post
                 )
@@ -106,7 +105,7 @@ class HomeView(View):
                     like.delete()
 
                 
-            return redirect("home", id=id)
+            return redirect("home")
 #---------------------------------------------------------------------------------
 def DeleteComment(request,id):
     comment = CommentModel.objects.get(id=id)

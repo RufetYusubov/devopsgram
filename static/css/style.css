@@ -343,6 +343,10 @@ nav .nav-right a > i{
     background: none;
     border: none;
 }
+.post-bottom .post_save{
+    background: none;
+    border: none;
+}
 
 .post .post-bottom .action:hover{
     background:#eee;
